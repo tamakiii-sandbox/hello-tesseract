@@ -1,4 +1,4 @@
-.PHONY: help install clean
+.PHONY: help install build ash clean
 
 IMAGE := tamakiii-sandbox/hello-tesseract
 
@@ -10,6 +10,9 @@ install: \
 
 build:
 	docker build -t $(IMAGE) .
+
+ash:
+	docker run --rm -it -v $(PWD):/app -w /app $(IMAGE) $@
 
 clean:
 	docker image rm $(IMAGE)
